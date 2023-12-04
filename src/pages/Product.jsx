@@ -14,12 +14,12 @@ export default function Product() {
   const product = products.find((item) =>
     item.id === id
   )
-  
-  const PlusCount = () => setCount(count+1)
+
+  const PlusCount = () => setCount(count + 1)
   const MinusCount = () => {
-    if(count>0){
-      setCount(count-1)
-    }    
+    if (count > 0) {
+      setCount(count - 1)
+    }
   }
 
   if (!product) {
@@ -48,9 +48,9 @@ export default function Product() {
           }}
         >
           <div>
-          <Link to="/products" 
-          style={{ color: 'black' }}
-          >이전 페이지로 이동</Link>
+            <Link to="/products"
+              style={{ color: 'black' }}
+            >이전 페이지로 이동</Link>
           </div>
           <div
             style={{
@@ -66,10 +66,11 @@ export default function Product() {
           <div>
             <h3>가격: {product.price}원</h3>
             <h3>좋아요: {product.likes}개</h3>
-            <h3>구매옵션</h3>
+            <h3 style={{marginBottom: option === "" ? "10px" :"0px"}}>구매옵션</h3>
             <select
               style={{
                 width: "100px",
+                backgroundColor: 'beige'
               }}
               onChange={(event) => {
                 setOption(event.target.value)
@@ -80,22 +81,38 @@ export default function Product() {
                 return <option key={option}>{option}</option>
               })}
             </select>
-            <div>상품 옵션 : {option}</div>
-            <span>개수 : {count}</span>
-            <button onClick={() => PlusCount()}>+</button>
-            <button onClick={() => MinusCount()}>-</button>
-            <div>총 금액 : {count*product.price}</div>         
-            <button
-              onClick={() => {
-                if(option === ""){
-                  alert('옵션을 선택해주세요.')
-                } else{
-                  dispatch(추가하기(cartItem));
-                }                
-              }}
-            >
-              장바구니 담기
-            </button>
+            <div style={{ display: option === "" ? "none" : "block" }}>
+              <div>상품 옵션 : {option}</div>
+              <span>개수 : {count}</span>
+              <button onClick={() => PlusCount()}>+</button>
+              <button onClick={() => MinusCount()}>-</button>
+              <div>총 금액 : {count * product.price}</div>
+            </div>
+            <div>
+              <button
+                style={{
+                  marginTop: option === "" ? "20px" : "2px",
+                  paddingLeft: '0px',                  
+                  backgroundColor: 'white',
+                  border: '1px solid purple',
+                  fontSize: '15px',
+                  color: 'purple',
+                  fontWeight: 'bold'                
+                }}
+                onClick={() => {
+                  if (option === "") {
+                    alert('옵션을 선택해주세요.')
+                  } else if(count === 0) {
+                    alert('수량을 선택해주세요.')
+                  }else {
+                    alert(`장바구니에 '${product.name}' 상품이 ${count}개 추가되었습니다!!`)
+                    dispatch(추가하기(cartItem));
+                  }
+                }}
+              >
+                장바구니 담기
+              </button>
+            </div>
           </div>
         </div>
 
