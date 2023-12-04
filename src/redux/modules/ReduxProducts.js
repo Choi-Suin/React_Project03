@@ -34,7 +34,7 @@ const products = createSlice({
       state.sort((a, b) => a.price - b.price);
     },
     // 처음 데이터로 리셋하기
-    리셋하기: (state) => {
+    리셋하기: () => {
       return initialState;
     },
   },

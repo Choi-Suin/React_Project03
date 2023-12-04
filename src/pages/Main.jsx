@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function Main() {
   const navigate = useNavigate();
   const products = useSelector((state) => state.products);
-  console.log(products)
+  //console.log(products)
 
   return (
     <>

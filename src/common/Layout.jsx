@@ -29,8 +29,10 @@ function Layout() {
               gap: "12px",
             }}
           >
+            <Link to="/products" style={{ color: 'white' }}>상품</Link>
+            <Link to="/cart" style={{ color: 'white' }}>장바구니</Link>
             <Link to="/login" style={{ color: 'white' }}>로그인</Link>
-            <Link to="/signup" style={{ color: 'white' }}>회원가입</Link>
+            <Link to="/signup" style={{ color: 'white' }}>회원가입</Link>            
           </div>
         </header>
 
